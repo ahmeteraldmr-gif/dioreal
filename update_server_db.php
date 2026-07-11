@@ -3,7 +3,7 @@ require 'vendor/autoload.php';
 $app = require_once 'bootstrap/app.php';
 $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
-// 1. Destinations Mapping
+// 1. Destination Guides (guides table) Mapping
 $mapping = [
     'Gümüşlük' => 'foto.img/destinations/gumusluk.png',
     'Yalıkavak' => 'foto.img/destinations/yalikavak.png',
@@ -24,7 +24,7 @@ $mapping = [
 
 echo "=== UPDATE START ===\n";
 
-// Update Destinations
+// Update Destination Guides (guides table)
 $destCount = 0;
 foreach (App\Models\Guide::all() as $g) {
     $titleTr = $g->title['tr'] ?? '';
@@ -44,6 +44,57 @@ foreach (App\Models\Guide::all() as $g) {
     }
 }
 echo "SUCCESS: Updated $destCount destination guides.\n";
+
+// 2. Destinations (destinations table) Mapping
+$destTableMapping = [
+    'Bodrum' => 'foto.img/bodrum.jpg',
+    'Datça' => 'foto.img/datca.jpg',
+    'Fethiye' => 'foto.img/fethiye.jpg',
+    'Alaçatı' => 'foto.img/cesme.jpg',
+    'Çeşme' => 'foto.img/cesme.jpg',
+    'Kekova' => 'foto.img/yat_manzara.jpg',
+    'Göcek' => 'foto.img/about_yacht.jpg',
+    'Bozburun' => 'foto.img/yat_hero.jpg',
+    'İstanbul' => 'foto.img/istanbul.jpg',
+    'Kapadokya' => 'foto.img/kapadokya.jpg',
+    'Kaş' => 'foto.img/kas.jpg',
+    'Maldivler' => 'foto.img/maldivler.jpg',
+    'Japonya' => 'foto.img/japonya.jpg',
+    'Kyoto' => 'foto.img/japonya.jpg',
+    'Patagonya' => 'foto.img/patagonya.jpg',
+    'Kosta Rika' => 'foto.img/patagonya.jpg',
+    'Amalfi' => 'foto.img/amalfi.jpg',
+    'Toskana' => 'foto.img/amalfi.jpg',
+    'Norveç' => 'foto.img/norvec.jpg',
+    'İsviçre' => 'foto.img/norvec.jpg',
+    'İzlanda' => 'foto.img/norvec.jpg',
+    'Lapland' => 'foto.img/norvec.jpg',
+    'Sahra' => 'foto.img/sahra.jpg',
+    'Petra' => 'foto.img/sahra.jpg',
+    'Seyşeller' => 'foto.img/maldivler.jpg',
+    'Paris' => 'foto.img/istanbul.jpg'
+];
+
+$destTableCount = 0;
+foreach (App\Models\Destination::all() as $d) {
+    $nameTr = $d->name['tr'] ?? '';
+    $updated = false;
+    foreach ($destTableMapping as $keyword => $img) {
+        if (mb_strpos($nameTr, $keyword) !== false) {
+            $d->img = $img;
+            $d->save();
+            $destTableCount++;
+            $updated = true;
+            break;
+        }
+    }
+    if (!$updated) {
+        $d->img = 'foto.img/bodrum.jpg';
+        $d->save();
+        $destTableCount++;
+    }
+}
+echo "SUCCESS: Updated $destTableCount destination table records.\n";
 
 // Update Journals (News) with unique existing images
 $journalImages = [
