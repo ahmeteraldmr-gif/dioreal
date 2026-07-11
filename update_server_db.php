@@ -3,6 +3,7 @@ require 'vendor/autoload.php';
 $app = require_once 'bootstrap/app.php';
 $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
+// 1. Destinations Mapping
 $mapping = [
     'Gümüşlük' => 'foto.img/destinations/gumusluk.png',
     'Yalıkavak' => 'foto.img/destinations/yalikavak.png',
@@ -21,27 +22,68 @@ $mapping = [
     'Bodrum' => 'foto.img/bodrum.jpg'
 ];
 
-echo "=== ACTIVE DATABASE UPDATE START ===\n";
-$updatedCount = 0;
+echo "=== UPDATE START ===\n";
+
+// Update Destinations
+$destCount = 0;
 foreach (App\Models\Guide::all() as $g) {
     $titleTr = $g->title['tr'] ?? '';
     foreach ($mapping as $keyword => $img) {
         if (mb_strpos($titleTr, $keyword) !== false) {
-            // Special check: do not match Datça if it is Eski Datça
             if ($keyword === 'Datça' && mb_strpos($titleTr, 'Eski Datça') !== false) {
                 continue;
             }
-            // Special check: do not match Bodrum if it is Bodrum Kalesi
             if ($keyword === 'Bodrum' && mb_strpos($titleTr, 'Kale') !== false) {
                 continue;
             }
-            
             $g->img = $img;
             $g->save();
-            echo "SUCCESS: Match found for keyword '$keyword' -> '{$titleTr}' updated to '{$img}'\n";
-            $updatedCount++;
+            $destCount++;
             break;
         }
     }
 }
-echo "=== UPDATE FINISHED. Total updated: $updatedCount ===\n";
+echo "SUCCESS: Updated $destCount destination guides.\n";
+
+// Update Journals (News) with unique existing images
+$journalImages = [
+    "foto.img/norvec.jpg",
+    "foto.img/sahra.jpg",
+    "foto.img/japonya.jpg",
+    "foto.img/patagonya.jpg",
+    "foto.img/maldivler.jpg",
+    "foto.img/about_safari.jpg",
+    "foto.img/about_yacht.jpg",
+    "foto.img/amalfi.jpg"
+];
+$journalCount = 0;
+$jIndex = 0;
+foreach (App\Models\Journal::all() as $j) {
+    $img = $journalImages[$jIndex % count($journalImages)];
+    $j->img = $img;
+    $j->save();
+    $jIndex++;
+    $journalCount++;
+}
+echo "SUCCESS: Updated $journalCount Journal articles.\n";
+
+// Update Events with unique existing images
+$eventImages = [
+    "foto.img/etkinlik_hero.jpg",
+    "foto.img/hero_slide_2.jpg",
+    "foto.img/hero_slide_3.jpg",
+    "foto.img/about_safari.jpg",
+    "foto.img/about_yacht.jpg"
+];
+$eventCount = 0;
+$eIndex = 0;
+foreach (App\Models\Event::all() as $e) {
+    $img = $eventImages[$eIndex % count($eventImages)];
+    $e->img = $img;
+    $e->save();
+    $eIndex++;
+    $eventCount++;
+}
+echo "SUCCESS: Updated $eventCount Events.\n";
+
+echo "=== ALL DATABASE RECORDS UPDATED SUCCESSFULLY ===\n";
