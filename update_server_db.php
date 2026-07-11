@@ -3,6 +3,8 @@ require 'vendor/autoload.php';
 $app = require_once 'bootstrap/app.php';
 $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
+echo "=== UPDATE START ===\n";
+
 // 1. Destination Guides (guides table) Mapping
 $mapping = [
     'Gümüşlük' => 'foto.img/destinations/gumusluk.png',
@@ -22,9 +24,6 @@ $mapping = [
     'Bodrum' => 'foto.img/bodrum.jpg'
 ];
 
-echo "=== UPDATE START ===\n";
-
-// Update Destination Guides (guides table)
 $destCount = 0;
 foreach (App\Models\Guide::all() as $g) {
     $titleTr = $g->title['tr'] ?? '';
@@ -96,7 +95,73 @@ foreach (App\Models\Destination::all() as $d) {
 }
 echo "SUCCESS: Updated $destTableCount destination table records.\n";
 
-// Update Journals (News) with unique existing images
+// 3. Update Hotels with unique existing images
+$hotelImages = [
+    "foto.img/otel_hero.jpg",
+    "foto.img/otel_oda.jpg",
+    "foto.img/otel_soneva.jpg",
+    "foto.img/otel_sirenuse.jpg",
+    "foto.img/otel_museum.jpg",
+    "foto.img/otel_hillside.jpg",
+    "foto.img/otel_maxx_royal.jpg",
+    "foto.img/otel_aman.jpg"
+];
+$hotelCount = 0;
+$hIndex = 0;
+foreach (App\Models\Hotel::all() as $h) {
+    $img = $hotelImages[$hIndex % count($hotelImages)];
+    $h->img = $img;
+    $h->save();
+    $hIndex++;
+    $hotelCount++;
+}
+echo "SUCCESS: Updated $hotelCount Hotels.\n";
+
+// 4. Update Restaurants with unique existing images
+$restaurantImages = [
+    "foto.img/rest_hero.jpg",
+    "foto.img/rest_melengec.jpg",
+    "foto.img/rest_seki.jpg",
+    "foto.img/rest_zuma.jpg",
+    "foto.img/rest_mikla.jpg",
+    "foto.img/rest_hideaway.jpg",
+    "foto.img/rest_intro.jpg",
+    "foto.img/rest_oludeniz.jpg"
+];
+$restaurantCount = 0;
+$rIndex = 0;
+foreach (App\Models\Restaurant::all() as $r) {
+    $img = $restaurantImages[$rIndex % count($restaurantImages)];
+    $r->img = $img;
+    $r->save();
+    $rIndex++;
+    $restaurantCount++;
+}
+echo "SUCCESS: Updated $restaurantCount Restaurants.\n";
+
+// 5. Update Yachts with unique existing images
+$yachtImages = [
+    "foto.img/yat_hero.jpg",
+    "foto.img/yat_manzara.jpg",
+    "foto.img/yat_intro_v2.jpg",
+    "foto.img/yat_aegean_wind.jpg",
+    "foto.img/yat_azure_dream.jpg",
+    "foto.img/yat_bodrum_blue.jpg",
+    "foto.img/yat_ozgur.jpg",
+    "foto.img/yat_rota.jpg"
+];
+$yachtCount = 0;
+$yIndex = 0;
+foreach (App\Models\Yacht::all() as $y) {
+    $img = $yachtImages[$yIndex % count($yachtImages)];
+    $y->img = $img;
+    $y->save();
+    $yIndex++;
+    $yachtCount++;
+}
+echo "SUCCESS: Updated $yachtCount Yachts.\n";
+
+// 6. Update Journals (News) with unique existing images
 $journalImages = [
     "foto.img/norvec.jpg",
     "foto.img/sahra.jpg",
@@ -118,7 +183,7 @@ foreach (App\Models\Journal::all() as $j) {
 }
 echo "SUCCESS: Updated $journalCount Journal articles.\n";
 
-// Update Events with unique existing images
+// 7. Update Events with unique existing images
 $eventImages = [
     "foto.img/etkinlik_hero.jpg",
     "foto.img/hero_slide_2.jpg",
