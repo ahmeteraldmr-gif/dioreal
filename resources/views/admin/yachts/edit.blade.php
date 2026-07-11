@@ -65,7 +65,7 @@
                 
                 <div class="form-group">
                     <label class="form-label" for="desc_en">Short Description (EN)</label>
-                    <textarea name="desc[en]" id="desc_en" class="form-control" required>{{ old('desc.en', $yacht->desc['en'] ?? '') }}</textarea>
+                    <textarea name="desc[en]" id="desc_en" class="form-control">{{ old('desc.en', $yacht->desc['en'] ?? '') }}</textarea>
                 </div>
 
                 <div class="form-group">

@@ -54,7 +54,7 @@
             <div class="lang-pane" data-lang="en">
                 <div class="form-group">
                     <label class="form-label" for="title_en">Article Title (EN)</label>
-                    <input type="text" name="title[en]" id="title_en" class="form-control" placeholder="e.g. Hidden Coves of Bodrum" value="{{ old('title.en') }}" required>
+                    <input type="text" name="title[en]" id="title_en" class="form-control" placeholder="e.g. Hidden Coves of Bodrum" value="{{ old('title.en') }}">
                 </div>
                 
                 <div class="form-group">
@@ -64,7 +64,7 @@
                 
                 <div class="form-group">
                     <label class="form-label" for="desc_en">Short Summary (EN) <small style="color: var(--text-muted);">— Shown in listings and hero</small></label>
-                    <textarea name="desc[en]" id="desc_en" class="form-control" placeholder="Write a brief summary (1–3 sentences)..." required style="min-height: 120px;">{{ old('desc.en') }}</textarea>
+                    <textarea name="desc[en]" id="desc_en" class="form-control" placeholder="Write a brief summary (1–3 sentences)..." style="min-height: 120px;">{{ old('desc.en') }}</textarea>
                 </div>
 
                 <div class="form-group">

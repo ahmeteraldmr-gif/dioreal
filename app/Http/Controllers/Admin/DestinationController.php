@@ -42,9 +42,9 @@ class DestinationController extends Controller
     {
         $request->validate([
             'name.tr' => 'required|string|max:255',
-            'name.en' => 'required|string|max:255',
+            'name.en' => 'nullable|string|max:255',
             'region.tr' => 'required|string|max:255',
-            'region.en' => 'required|string|max:255',
+            'region.en' => 'nullable|string|max:255',
             'desc.tr' => 'nullable|string',
             'desc.en' => 'nullable|string',
             'type' => 'required|string|in:turkiye,yurtdisi_popular,yurtdisi_traveller,yurtdisi_month,yurtdisi_spotlight',
@@ -101,9 +101,9 @@ class DestinationController extends Controller
     {
         $request->validate([
             'name.tr' => 'required|string|max:255',
-            'name.en' => 'required|string|max:255',
+            'name.en' => 'nullable|string|max:255',
             'region.tr' => 'required|string|max:255',
-            'region.en' => 'required|string|max:255',
+            'region.en' => 'nullable|string|max:255',
             'desc.tr' => 'nullable|string',
             'desc.en' => 'nullable|string',
             'type' => 'required|string|in:turkiye,yurtdisi_popular,yurtdisi_traveller,yurtdisi_month,yurtdisi_spotlight',

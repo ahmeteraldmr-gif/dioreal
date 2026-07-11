@@ -70,7 +70,7 @@
                 
                 <div class="form-group">
                     <label class="form-label" for="desc_en">Short Summary (EN) <small style="color: var(--text-muted);">— Shown in listings and hero</small></label>
-                    <textarea name="desc[en]" id="desc_en" class="form-control" required style="min-height: 120px;">{{ old('desc.en', $journal->desc['en'] ?? '') }}</textarea>
+                    <textarea name="desc[en]" id="desc_en" class="form-control" style="min-height: 120px;">{{ old('desc.en', $journal->desc['en'] ?? '') }}</textarea>
                 </div>
 
                 <div class="form-group">

@@ -35,11 +35,11 @@ class YachtController extends Controller
     {
         $request->validate([
             'name.tr' => 'required|string|max:255',
-            'name.en' => 'required|string|max:255',
+            'name.en' => 'nullable|string|max:255',
             'tag.tr' => 'nullable|string|max:255',
             'tag.en' => 'nullable|string|max:255',
             'desc.tr' => 'required|string',
-            'desc.en' => 'required|string',
+            'desc.en' => 'nullable|string',
             'long_desc.tr' => 'nullable|string',
             'long_desc.en' => 'nullable|string',
             'img_file' => 'nullable|image|max:51200',
@@ -79,11 +79,11 @@ class YachtController extends Controller
     {
         $request->validate([
             'name.tr' => 'required|string|max:255',
-            'name.en' => 'required|string|max:255',
+            'name.en' => 'nullable|string|max:255',
             'tag.tr' => 'nullable|string|max:255',
             'tag.en' => 'nullable|string|max:255',
             'desc.tr' => 'required|string',
-            'desc.en' => 'required|string',
+            'desc.en' => 'nullable|string',
             'long_desc.tr' => 'nullable|string',
             'long_desc.en' => 'nullable|string',
             'img_file' => 'nullable|image|max:51200',

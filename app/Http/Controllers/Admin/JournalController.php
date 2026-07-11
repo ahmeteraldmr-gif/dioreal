@@ -36,11 +36,11 @@ class JournalController extends Controller
     {
         $request->validate([
             'title.tr' => 'required|string|max:255',
-            'title.en' => 'required|string|max:255',
+            'title.en' => 'nullable|string|max:255',
             'tag.tr' => 'nullable|string|max:255',
             'tag.en' => 'nullable|string|max:255',
             'desc.tr' => 'required|string',
-            'desc.en' => 'required|string',
+            'desc.en' => 'nullable|string',
             'content.tr' => 'nullable|string',
             'content.en' => 'nullable|string',
             'date' => 'required|string|max:255',
@@ -76,11 +76,11 @@ class JournalController extends Controller
     {
         $request->validate([
             'title.tr' => 'required|string|max:255',
-            'title.en' => 'required|string|max:255',
+            'title.en' => 'nullable|string|max:255',
             'tag.tr' => 'nullable|string|max:255',
             'tag.en' => 'nullable|string|max:255',
             'desc.tr' => 'required|string',
-            'desc.en' => 'required|string',
+            'desc.en' => 'nullable|string',
             'content.tr' => 'nullable|string',
             'content.en' => 'nullable|string',
             'date' => 'required|string|max:255',

@@ -54,7 +54,7 @@
             <div class="lang-pane" data-lang="en">
                 <div class="form-group">
                     <label class="form-label" for="name_en">Restaurant Name (EN)</label>
-                    <input type="text" name="name[en]" id="name_en" class="form-control" placeholder="e.g. Zuma Bodrum" value="{{ old('name.en') }}" required>
+                    <input type="text" name="name[en]" id="name_en" class="form-control" placeholder="e.g. Zuma Bodrum" value="{{ old('name.en') }}">
                 </div>
                 
                 <div class="form-group">
@@ -64,7 +64,7 @@
                 
                 <div class="form-group">
                     <label class="form-label" for="desc_en">Short Description (EN)</label>
-                    <textarea name="desc[en]" id="desc_en" class="form-control" placeholder="Short description for listing cards..." required>{{ old('desc.en') }}</textarea>
+                    <textarea name="desc[en]" id="desc_en" class="form-control" placeholder="Short description for listing cards...">{{ old('desc.en') }}</textarea>
                 </div>
 
                 <div class="form-group">

@@ -35,11 +35,11 @@ class GuideController extends Controller
     {
         $request->validate([
             'title.tr' => 'required|string|max:255',
-            'title.en' => 'required|string|max:255',
+            'title.en' => 'nullable|string|max:255',
             'tag.tr' => 'nullable|string|max:255',
             'tag.en' => 'nullable|string|max:255',
             'desc.tr' => 'required|string',
-            'desc.en' => 'required|string',
+            'desc.en' => 'nullable|string',
             'img_file' => 'nullable|image|max:51200',
             'img_url' => 'nullable|string',
             'gallery_files.*' => 'nullable|image|max:51200',
@@ -84,11 +84,11 @@ class GuideController extends Controller
     {
         $request->validate([
             'title.tr' => 'required|string|max:255',
-            'title.en' => 'required|string|max:255',
+            'title.en' => 'nullable|string|max:255',
             'tag.tr' => 'nullable|string|max:255',
             'tag.en' => 'nullable|string|max:255',
             'desc.tr' => 'required|string',
-            'desc.en' => 'required|string',
+            'desc.en' => 'nullable|string',
             'img_file' => 'nullable|image|max:51200',
             'img_url' => 'nullable|string',
             'gallery_files.*' => 'nullable|image|max:51200',
